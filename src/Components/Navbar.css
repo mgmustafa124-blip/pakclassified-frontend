@@ -1,0 +1,197 @@
+/* Reset & Variables */
+:root {
+  --bg-color: #0b0f17;       /* Deep obsidian midnight background */
+  --text-color: #ffffff;
+  --accent-color: #0077ff;   /* Sleek Electric Blue */
+  --sky-blue: #00d2ff;       /* Vibrant Sky Blue for gradients/hover */
+  --transition: all 0.3s ease;
+}
+
+.navbar {
+  background-color: var(--bg-color);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid rgba(0, 210, 255, 0.1); /* Subtle sky-blue boundary line */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+}
+
+/* Logo styling */
+.navbar-logo {
+  color: var(--text-color);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* Sky blue accent for the logo text */
+.logo-accent {
+  color: var(--sky-blue);
+  
+}
+
+/* Nav Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-item {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+/* Hovering turns text sky blue */
+.nav-links:hover {
+  color: var(--sky-blue);
+}
+
+/* Desktop Button Styling with a subtle blue gradient */
+.btn-primary {
+  background: transparent;
+  color: var(--text-color);
+  padding: 10px 22px;
+  border: 2px solid var(--accent-color);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-color), var(--sky-blue));
+  border-color: transparent;
+  color: #000000; /* Dark text against the bright blue looks very sharp */
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+}
+
+.mobile-btn {
+  display: none;
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: var(--transition);
+  background-color: var(--text-color);
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    background-color: var(--bg-color);
+  }
+
+  .nav-menu.active {
+    left: 0;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .nav-item {
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+  }
+
+  .nav-links {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    display: table;
+  }
+
+  /* Hamburger turns sky blue when active */
+  .hamburger {
+    display: block;
+  }
+  
+  .hamburger.active .bar {
+    background-color: var(--sky-blue);
+  }
+
+  /* Hamburger Animation to 'X' */
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-btn-desktop {
+    display: none;
+  }
+
+  .mobile-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Mobile Button Gradient */
+  .nav-btn-mobile {
+    background: linear-gradient(135deg, var(--accent-color), var(--sky-blue));
+    color: #000000;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    width: 80%;
+  }
+}
