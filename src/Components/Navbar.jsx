@@ -28,7 +28,7 @@ const styles = {
   mainNav: {
     background: "#0A0A0A",
     borderBottom: "1px solid rgba(200,16,46,0.35)",
-    padding: "10px 0", // Added padding for better mobile view height
+    padding: "5px 0", // Reduced from 10px to 5px
   },
   brandWrapper: {
     display: "flex",
@@ -99,7 +99,7 @@ const globalCSS = `
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
     font-family: 'DM Sans', sans-serif !important;
-    padding: 28px 14px !important;
+    padding: 12px 14px !important; /* FIXED: Reduced vertical padding from 28px to 12px */
     background: transparent !important;
     border: none !important;
     transition: color 0.2s !important;
@@ -142,7 +142,7 @@ const globalCSS = `
     font-weight: 500 !important;
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
-    padding: 28px 14px !important;
+    padding: ; /* FIXED: Reduced vertical padding from 28px to 12px */
     position: relative !important;
     transition: color 0.2s !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -183,7 +183,7 @@ const globalCSS = `
     text-transform: uppercase !important;
     font-family: 'DM Sans', sans-serif !important;
     background: transparent !important;
-    padding: 8px 16px !important;
+    padding: ; /* FIXED: Slightly reduced padding from 8px to 6px */
     border-radius: 3px !important;
     transition: all 0.2s ease-in-out !important;
     display: flex !important;
@@ -324,7 +324,7 @@ export default function CarNavbar() {
 
       {/* Main Navbar */}
       <Navbar expand="lg" style={styles.mainNav} className="veloce-nav">
-        <Container className="px-3">
+        <Container className="px-3 ">
           {/* Brand */}
           <Navbar.Brand href="#" style={styles.brandWrapper}>
             <span style={styles.brandDot} />
@@ -382,7 +382,7 @@ export default function CarNavbar() {
                   title={
                     <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <span style={{
-                        width: "40px", height: "40px", borderRadius: "50%",
+                        width: "35px", height: "35px", borderRadius: "50%", /* FIXED: Reduced from 40px to 35px */
                         background: "#C8102E", display: "inline-flex",
                         alignItems: "center", justifyContent: "center",
                         fontSize: "12px", fontWeight: 600, color: "#fff",
@@ -430,7 +430,7 @@ export default function CarNavbar() {
                 </NavDropdown>
               ) : (
                 /* Responsive Buttons if logged out */
-                <div className="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center w-100 gap-2 gap-lg-0">
+                <div className="d-flex flex-column flex-sm-row align-items-stretch align-items-lg-center w-100 gap-2 gap-lg-0">
                   <button
                     style={styles.ctaBtn}
                     className="border bg-transparent veloce-signup-btn order-2 order-lg-1 me-0 me-lg-2"

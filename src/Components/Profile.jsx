@@ -6,7 +6,7 @@ import Post from '../Modals/Post';
 
 const styles = {
   pageWrapper: {
-    background: "#212121",
+    background: "#2b2b2b",
     color: "#E5E5E5",
     fontFamily: "'DM Sans', sans-serif",
     minHeight: "100vh",

@@ -226,7 +226,7 @@ export default function CarDetails() {
                                     <p style={styles.specLabel}>Price</p>
                                     {/* FIXED: Removed double style object conflict */}
                                     <p style={{ ...styles.specValue, color: "#C8102E", fontWeight: "700", fontSize: "18px" }} className="veloce-spec-value">
-                                        {car.Price ? `Rs. ${Number(car.Price).toLocaleString('en-PK')}` : "Contact for Price"}
+                                        {car.Price ? `Rs. ${(car.Price).toLocaleString('en-PK')}` : "Contact for Price"}
                                     </p>
                                 </div>
 

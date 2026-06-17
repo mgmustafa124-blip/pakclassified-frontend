@@ -4,15 +4,15 @@ import { Container, Row, Col, Card, Spinner, Badge } from "react-bootstrap";
 
 const styles = {
     pageWrapper: {
-        background: "#0A0A0A", // Matching the sleek true dark palette
+        background: "#272727",
         color: "#fff",
         minHeight: "100vh",
-        padding: "60px 0",
+        padding: "40px 0", // Mobile friendly dynamic padding feel
         fontFamily: "'DM Sans', sans-serif",
     },
     categoryTitle: {
         fontFamily: "'Bebas Neue', sans-serif",
-        fontSize: "calc(32px + 2vw)", // Fluid fluid-typography
+        fontSize: "calc(28px + 1.5vw)", // Adjusted fluid typography
         letterSpacing: "0.06em",
         color: "#fff",
         marginBottom: "5px",
@@ -22,7 +22,7 @@ const styles = {
         width: "60px",
         height: "4px",
         background: "#C8102E",
-        marginBottom: "40px",
+        marginBottom: "30px",
     },
     postCard: {
         background: "#141414",
@@ -37,33 +37,26 @@ const styles = {
     cardImageWrapper: {
         position: "relative",
         width: "100%",
-        height: "240px", // Fixed standard display ratio
         overflow: "hidden",
         backgroundColor: "#1f1f1f"
-    },
-    cardImage: {
-        height: "100%",
-        width: "100%",
-        objectFit: "cover",
-        borderBottom: "1px solid rgba(200,16,46,0.15)",
     },
     cardContentBox: {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        flexGrow: 1, // Forces lower sections to push downwards equally
-        padding: "20px"
+        flexGrow: 1, 
+        padding: "16px" // Fluid padding for mobile compatibility
     },
     cardTitle: {
-        fontSize: "20px",
+        fontSize: "18px", // Clean font tracking
         fontWeight: "600",
         color: "#fff",
         lineHeight: "1.3",
     },
     cardText: {
         color: "#aaa",
-        fontSize: "14px",
-        lineHeight: "1.6",
+        fontSize: "13px",
+        lineHeight: "1.5",
     }
 };
 
@@ -71,18 +64,20 @@ const customGlobalCSS = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap');
 
   .post-card-hover:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     border-color: rgba(200, 16, 46, 0.4) !important;
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
   }
-  
-  /* Micro-fixes for date stacking on very narrow mobile screens */
-  @media (max-width: 380px) {
-    .meta-date-row {
-        flex-direction: column !important;
-        align-items: start !important;
-        gap: 6px !important;
-    }
+
+  /* Responsive Aspect Ratio Control for Images */
+  .responsive-img-wrapper {
+     height: 220px;
+  }
+
+  @media (max-width: 576px) {
+     .responsive-img-wrapper {
+         height: 180px; /* Smaller aspect for compact mobile screens */
+     }
   }
 `;
 
@@ -90,7 +85,7 @@ export default function CategoryPage() {
     const { id } = useParams();
 
     const [posts, setPosts] = useState([]);
-    const [categoryName, setCategoryName] = useState("Vehicles"); // Controlled dynamic title fallback
+    const [categoryName, setCategoryName] = useState("Vehicles"); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -106,7 +101,6 @@ export default function CategoryPage() {
                 const data = await response.json();
                 setPosts(data);
                 
-                // Extract category name dynamically safely
                 if (data.length > 0 && data[0]?.CategoryID?.Name) {
                     setCategoryName(data[0].CategoryID.Name);
                 }
@@ -161,61 +155,65 @@ export default function CategoryPage() {
 
                     {/* Responsive Posts Grid Display */}
                     {!loading && !error && posts.length > 0 && (
-                        <Row className="g-4 px-1">
+                        <Row className="g-3 g-md-4 px-1"> {/* Adaptive spacing between grids */}
                             {posts.map((post) => (
                                 <Col key={post._id || post.id} xs={12} sm={6} lg={4}>
                                     <Card style={styles.postCard} className="post-card-hover">
                                         
-                                        {/* Fixed Aspect Image Wrapper */}
-                                        <div style={styles.cardImageWrapper}>
+                                        {/* Image Container with Media Query adjustments */}
+                                        <div style={styles.cardImageWrapper} className="responsive-img-wrapper">
                                             <Card.Img
                                                 variant="top"
                                                 src={post.Image ? `http://localhost:3000/${post.Image.replace(/\\/g, '/')}` : "https://via.placeholder.com/600x400?text=Veloce+Automobiles"}
-                                                style={styles.cardImage}
+                                                style={{ height: "100%", width: "100%", objectFit: "cover", borderBottom: "1px solid rgba(200,16,46,0.15)" }}
                                                 alt={post.Name || "Vehicle"}
                                             />
                                         </div>
 
-                                        {/* Structured Content Body */}
+                                        {/* Content Area */}
                                         <div style={styles.cardContentBox}>
-                                            {/* Upper half of card details */}
-                                            <div className="mb-4">
-                                                <div className="d-flex justify-content-between align-items-center gap-2 mb-3">
+                                            <div className="mb-3">
+                                                {/* Meta Badges Row: Managed Wrapping */}
+                                                <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
                                                     <Badge style={{ background: "rgba(200, 16, 46, 0.15)", color: "#C8102E", border: "1px solid rgba(200, 16, 46, 0.3)", fontSize: "10px", padding: "5px 10px", letterSpacing: "0.05em" }}>
                                                         {post.CategoryID?.Name || "Vehicle"}
                                                     </Badge>
                                                     {post.Price && (
-                                                        <span className="fw-bold fs-5 text-white">
-                                                            Rs. {Number(post.Price).toLocaleString('en-PK')}
+                                                        <span className="fw-bold fs-6 text-white">
+                                                            Rs. {(post.Price).toLocaleString('en-PK')}
                                                         </span>
                                                     )}
                                                 </div>
 
-                                                <Card.Title style={styles.cardTitle} className="mb-2 text-white">
+                                                <Card.Title style={styles.cardTitle} className="mb-2 text-white text-truncate">
                                                     {post.Name}
                                                 </Card.Title>
 
-                                                <Card.Text style={styles.cardText} className="text-secondary">
+                                                <Card.Text style={styles.cardText} className="text-secondary line-clamp">
                                                     {post.Description || "No registration description provided for this performance model."}
                                                 </Card.Text>
                                             </div>
 
-                                            {/* Lower section fixed at the bottom */}
+                                            {/* Bottom Metadata Section */}
                                             <div>
-                                                <hr style={{ borderColor: "rgba(255,255,255,0.08)", margin: "0 0 15px 0" }} />
+                                                <hr style={{ borderColor: "rgba(255,255,255,0.08)", margin: "0 0 12px 0" }} />
 
-                                                <div className="text-secondary" style={{ fontSize: "13px" }}>
-                                                    {/* Flex Wrap Fix applied */}
-                                                    <div className="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2 meta-date-row">
-                                                        <span>📅 <strong className="text-light">Start:</strong> {post.Startdate || "N/A"}</span>
-                                                        <span>⌛ <strong className="text-light">End:</strong> {post.Enddate || "N/A"}</span>
+                                                <div className="text-secondary" style={{ fontSize: "12px" }}>
+                                                    {/* Proper Responsive Grid for Dates instead of vulnerable Flexbox */}
+                                                    <div className="row g-1 mb-2">
+                                                        <div className="col-6 text-truncate">
+                                                            <span>📅 <strong className="text-light">Start:</strong> {post.Startdate || "N/A"}</span>
+                                                        </div>
+                                                        <div className="col-6 text-end text-truncate">
+                                                            <span>⌛ <strong className="text-light">End:</strong> {post.Enddate || "N/A"}</span>
+                                                        </div>
                                                     </div>
 
-                                                    <div className="pt-2 border-top border-secondary border-opacity-25 d-flex flex-column gap-1" style={{ opacity: 0.85 }}>
-                                                        <div className="text-truncate">
+                                                    <div className="pt-2 border-top border-secondary border-opacity-25 row g-1" style={{ opacity: 0.85 }}>
+                                                        <div className="col-6 text-truncate">
                                                             📍 <strong className="text-light">City:</strong> <span className="font-monospace text-muted">{post.CityID?.Name || "Global"}</span>
                                                         </div>
-                                                        <div className="text-truncate">
+                                                        <div className="col-6 text-end text-truncate">
                                                             ⚙️ <strong className="text-light">Status:</strong> <span className="font-monospace text-muted">{post.StatusID?.Name || "Available"}</span>
                                                         </div>
                                                     </div>

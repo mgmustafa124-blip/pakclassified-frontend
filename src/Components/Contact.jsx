@@ -39,7 +39,7 @@ const styles = {
 
   // Main Contact Section
   contactPage: {
-    background: "#0A0A0A",
+    background: "#252424",
     color: "#D1D1D1",
     fontFamily: "'DM Sans', sans-serif",
     paddingTop: "60px",
