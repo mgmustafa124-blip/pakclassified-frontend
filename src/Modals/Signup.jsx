@@ -6,6 +6,8 @@ import toast, { Toaster } from 'react-hot-toast';
 
 function Signup({ show, handleClose }) {
 
+    const url = import.meta.env.VITE_API_URL;
+
     const {
         register,
         handleSubmit,
@@ -34,7 +36,7 @@ function Signup({ show, handleClose }) {
             formdata.append("Password", data.Password);
             formdata.append("Image", data.Image[0]);
 
-            const signupfetch = await fetch('http://localhost:3000/User/create', {
+            const signupfetch = await fetch(`${url}/User/create`, {
                 method: "POST",
                 body: formdata,
             });

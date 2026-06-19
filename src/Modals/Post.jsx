@@ -11,6 +11,7 @@ function Post({ show, handleClose, postId = null, onRefresh }) {
     const [city, setcity] = useState([])
     const [status, setstatus] = useState([])
     const user = useContext(UserContext)
+    const url = import.meta.env.VITE_API_URL;
 
     const {
         register,
@@ -29,7 +30,7 @@ function Post({ show, handleClose, postId = null, onRefresh }) {
         if (postId && show) {
             const fetchSinglePost = async () => {
                 try {
-                    const res = await fetch(`http://localhost:3000/Post/read`); 
+                    const res = await fetch(`${url}/Post/read`); 
                     const allPosts = await res.json();
                     const currentPost = allPosts.find(p => (p._id || p.id) === postId);
 
@@ -58,13 +59,13 @@ function Post({ show, handleClose, postId = null, onRefresh }) {
     useEffect(() => {
         const fetchDropdowns = async () => {
             try {
-                const resCity = await fetch("http://localhost:3000/City/read");
+                const resCity = await fetch(`${url}/City/read`);
                 if (resCity.status === 200) setcity(await resCity.json());
 
-                const resCat = await fetch("http://localhost:3000/Category/read");
+                const resCat = await fetch(`${url}/Category/read`);
                 if (resCat.status === 200) setcategory(await resCat.json());
 
-                const resStatus = await fetch("http://localhost:3000/Status/read");
+                const resStatus = await fetch(`${url}/Status/read`);
                 if (resStatus.status === 200) setstatus(await resStatus.json());
             } catch (err) {
                 console.log(err.message);
@@ -93,8 +94,8 @@ function Post({ show, handleClose, postId = null, onRefresh }) {
             const Token = JSON.parse(localStorage.getItem("auth"));
 
             const url = postId 
-                ? `http://localhost:3000/Post/update/${postId}` 
-                : 'http://localhost:3000/Post/create';
+                ? `${url}/Post/update/${postId}` 
+                : `${url}/Post/create`;
             
             const method = postId ? "PUT" : "POST";
 

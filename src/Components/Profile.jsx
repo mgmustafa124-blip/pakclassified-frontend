@@ -220,6 +220,7 @@ export default function VeloceProfile() {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!user) {
@@ -233,7 +234,7 @@ export default function VeloceProfile() {
       if (!userId) return;
 
       try {
-        const response = await fetch(`http://localhost:3000/Post/Userposts/${userId}`);
+        const response = await fetch(`${url}/Post/Userposts/${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch garage showcase data.');
         }
@@ -254,7 +255,7 @@ export default function VeloceProfile() {
   const handleDeletePost = async (id) => {
     if (window.confirm("Are you sure you want to remove this machine?")) {
       try {
-        await fetch(`http://localhost:3000/Post/delete/${id}`, { method: 'DELETE' });
+        await fetch(`${url}/Post/delete/${id}`, { method: 'DELETE' });
         window.location.reload();
       } catch (err) {
         alert("Could not delete post. Try again.");

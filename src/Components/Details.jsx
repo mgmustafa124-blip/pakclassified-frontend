@@ -225,11 +225,12 @@ export default function CarDetails() {
     const { id } = useParams();
     const [car, setCar] = useState(null);
     const [loading, setLoading] = useState(true);
+    const url = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         if (!id) return;
         setLoading(true);
-        fetch(`http://localhost:3000/Post/readid/${id}`)
+        fetch(`${url}/Post/readid/${id}`)
             .then(res => res.json())
             .then(data => {
                 setCar(data);

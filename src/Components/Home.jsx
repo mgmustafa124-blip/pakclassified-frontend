@@ -334,6 +334,7 @@ export default function Home() {
 
     const navigate = useNavigate();
     const Post = useContext(PostContext);
+    
 
     return (
         <>

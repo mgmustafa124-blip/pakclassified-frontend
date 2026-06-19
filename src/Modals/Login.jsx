@@ -9,6 +9,7 @@ import { UserContext } from "../context/User.context";
 function Login({ show, handleClose }) {
 
     const user = useContext(UserContext);
+    const url = import.meta.env.VITE_API_URL;
 
     const {
         register,
@@ -28,7 +29,7 @@ function Login({ show, handleClose }) {
                 Email: data.Email,
                 Password: data.Password
             };
-            const loginfetch = await fetch("http://localhost:3000/User/Login", {
+            const loginfetch = await fetch(`${url}/User/Login`, {
                 method: 'POST',
                 body: JSON.stringify(payload),
                 headers: {
@@ -47,7 +48,7 @@ function Login({ show, handleClose }) {
             }
 
             localStorage.setItem("auth", JSON.stringify(jsondata));
-            console.log(jsondata.data);
+            // console.log(jsondata.data);
             user.setuser(jsondata.data);
             
             reset();

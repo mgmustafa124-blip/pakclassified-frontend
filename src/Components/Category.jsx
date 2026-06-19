@@ -88,13 +88,14 @@ export default function CategoryPage() {
     const [categoryName, setCategoryName] = useState("Vehicles"); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const url = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         async function fetchCategoryPosts() {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`http://localhost:3000/Post/readcat/${id}`);
+                const response = await fetch(`${url}/Post/readcat/${id}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch posts for this category.");
                 }
@@ -211,10 +212,10 @@ export default function CategoryPage() {
 
                                                     <div className="pt-2 border-top border-secondary border-opacity-25 row g-1" style={{ opacity: 0.85 }}>
                                                         <div className="col-6 text-truncate">
-                                                            📍 <strong className="text-light">City:</strong> <span className="font-monospace text-muted">{post.CityID?.Name || "Global"}</span>
+                                                            📍 <strong className="text-light">City:</strong> <span className="font-monospace ">{post.CityID?.Name || "Global"}</span>
                                                         </div>
                                                         <div className="col-6 text-end text-truncate">
-                                                            ⚙️ <strong className="text-light">Status:</strong> <span className="font-monospace text-muted">{post.StatusID?.Name || "Available"}</span>
+                                                            ⚙️ <strong className="text-light">Status:</strong> <span className="font-monospace">{post.StatusID?.Name || "Available"}</span>
                                                         </div>
                                                     </div>
                                                 </div>

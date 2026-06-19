@@ -287,10 +287,11 @@ export default function CarNavbar() {
   const [post, setpost] = useState(false);
   const [category, setcategory] = useState([]);
   const user = useContext(UserContext);
+  const url = import.meta.env.VITE_API_URL;
 
   async function fetchCategories() {
     try {
-      const data = await fetch('http://localhost:3000/Category/read');
+      const data = await fetch(`${url}/Category/read`);
       const categories = await data.json();
       setcategory(categories);
     } catch (error) {

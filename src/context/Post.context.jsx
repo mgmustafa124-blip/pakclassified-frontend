@@ -8,9 +8,10 @@ export const PostContext = createContext({
 export default function PostProvider({ children }) {
 
     const [post, setpost] = useState([])
+    const url = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
-        fetch("http://localhost:3000/Post/read")
+        fetch(`${url}/Post/read`)
             .then(res => res.json())
             .then(data => {
                 setpost(data);
