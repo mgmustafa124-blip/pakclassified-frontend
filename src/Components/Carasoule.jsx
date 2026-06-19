@@ -8,8 +8,8 @@ const CarCarousel = () => {
       id: 1,
       image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80",
       accentTitle: "Hyper",
-      mainTitle: "Performance",
-      subtitle: "Unleash raw power with a recalibrated V8 twin-turbo engine.",
+      mainTitle: "Cars",
+      subtitle: "Unleash raw power with a recalibrated V8 twin-turbo.",
       ctaPrimary: "Explore Inventory",
       ctaSecondary: "Build Yours"
     },
@@ -46,10 +46,7 @@ const CarCarousel = () => {
         }
         
         /* Navigation Arrows Color Override */
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-          filter: invert(21%) sepia(100%) saturate(7417%) hue-rotate(352deg) brightness(87%) contrast(92%);
-        }
+        
 
         /* Large Master Frame Container wrapping Title, Subtitle, and Buttons */
         .content-master-frame {
@@ -100,7 +97,7 @@ const CarCarousel = () => {
         }
       `}</style>
 
-      <Carousel fade interval={5000} indicators={true} controls={true} className="bg-black">
+      <Carousel fade interval={5000} indicators={true} controls={false} className="bg-black">
         {slides.map((slide) => (
           <Carousel.Item key={slide.id} style={{ height: '66vh', minHeight: '450px' }}>
             

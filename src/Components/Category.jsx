@@ -175,7 +175,7 @@ export default function CategoryPage() {
                                             <div className="mb-3">
                                                 {/* Meta Badges Row: Managed Wrapping */}
                                                 <div className="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2">
-                                                    <Badge style={{ background: "rgba(200, 16, 46, 0.15)", color: "#C8102E", border: "1px solid rgba(200, 16, 46, 0.3)", fontSize: "10px", padding: "5px 10px", letterSpacing: "0.05em" }}>
+                                                    <Badge className=" bg-dark-subtle text-body">
                                                         {post.CategoryID?.Name || "Vehicle"}
                                                     </Badge>
                                                     {post.Price && (

@@ -95,7 +95,7 @@ const styles = {
     borderRadius: "12px",
     overflow: "hidden",
     transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.4)"
+    boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
   },
   postTitle: {
     fontFamily: "'Bebas Neue', sans-serif",
@@ -342,14 +342,14 @@ export default function VeloceProfile() {
                           const currentId = post.id || post._id;
 
                           return (
-                            <Card style={styles.postCard} className="veloce-post-card" key={currentId}>
+                            <Card style={styles.postCard} className="veloce-post-card " key={currentId}>
                               <Row className="g-0 align-items-stretch">
                                 {/* Fixed CSS layout wrapper for images on mobile */}
-                                <Col md={4} className="veloce-post-img-wrapper" style={{ position: 'relative' }}>
+                                <Col md={5} className="veloce-post-img-wrapper" style={{ position: 'relative' }}>
                                   <Card.Img
                                     src={`http://localhost:3000/${post.Image}`}
                                     className="veloce-post-img"
-                                    style={{ width: "100%", height: "100%", objectFit: "cover", position: 'absolute', top: 0, left: 0 }}
+                                    style={{ width: "100%", height: "100%", objectFit: "cover", }}
                                   />
                                   {post.status && (
                                     <Badge
@@ -362,12 +362,12 @@ export default function VeloceProfile() {
                                   )}
                                 </Col>
 
-                                <Col md={8}>
+                                <Col md={7}>
                                   <Card.Body className="d-flex flex-column justify-content-between p-4 h-100">
                                     <div className="d-flex justify-content-between align-items-start mb-3 veloce-card-header-flex">
                                       <Card.Title style={styles.postTitle}>{post.Name}</Card.Title>
                                       <span style={styles.priceTag}>
-                                        {post.Price ? `Rs. ${Number(post.Price).toLocaleString('en-PK')}` : "Contact"}
+                                        {post.Price ? `Rs. ${(post.Price).toLocaleString('en-PK')}` : "Contact"}
                                       </span>
                                     </div>
 
@@ -389,7 +389,7 @@ export default function VeloceProfile() {
                                     {post.Description && (
                                       <div className="mb-4">
                                         <span style={styles.metaLabel}>Specifications & Overview</span>
-                                        <p className="text-light small mb-0 style-description" style={{ lineHeight: '1.5', display: '-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                                        <p className="text-light small mb-0 style-description" style={{ lineHeight: '1.5', display: '', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                                           {post.Description}
                                         </p>
                                       </div>

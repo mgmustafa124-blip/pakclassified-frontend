@@ -156,8 +156,8 @@ const styles = {
         textOverflow: "ellipsis" // Long specifications text overflow prevention
     },
     cardBtn: {
-        background: "transparent",
-        border: "1px solid rgba(255,255,255,0.15)",
+        background:"#322e2e",
+        border: "2px solid rgb(103, 94, 94)",
         color: "#fff",
         fontSize: "12px",
         textTransform: "uppercase",
@@ -386,7 +386,7 @@ export default function Home() {
                                             </Row>
                                         </div>
 
-                                        <button style={styles.cardBtn} onClick={() => navigate(`/details/${car._id}`)} className="car-action-btn">
+                                        <button style={styles.cardBtn} className="" onClick={() => navigate(`/details/${car._id}`)} className="car-action-btn">
                                             Explore Performance
                                         </button>
                                     </Card.Body>
