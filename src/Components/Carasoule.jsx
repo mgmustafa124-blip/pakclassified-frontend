@@ -35,7 +35,6 @@ const CarCarousel = () => {
 
   return (
     <>
-      {/* Custom CSS injection for Red, Black, and Large Geometric framing */}
       <style>{`
         /* Indicator Overrides */
         .carousel-indicators [data-bs-target] {
@@ -44,47 +43,62 @@ const CarCarousel = () => {
           height: 10px;
           border-radius: 50%;
         }
-        
-        /* Navigation Arrows Color Override */
-        
 
-        /* Large Master Frame Container wrapping Title, Subtitle, and Buttons */
+        /* Responsive Master Frame Container */
         .content-master-frame {
           position: relative;
-          padding: 30px 60px;
+          padding: 25px 35px; /* Mobile-friendly initial padding */
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           max-width: 600px;
           width: 100%;
+          margin: 0 auto;
+        }
+
+        /* Desktop specific padding adjustment */
+        @media (min-width: 768px) {
+          .content-master-frame {
+            padding: 30px 60px;
+          }
         }
         
-        /* Expanded Top-Left Corner Angle (Bigger and Thicker) */
+        /* Top-Left Corner Angle */
         .content-master-frame::before {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
-          width: 60px;  /* Increased length */
-          height: 60px; /* Increased length */
-          border-top: 5px solid #dc3545; /* Thicker border */
-          border-left: 5px solid #dc3545;
+          width: 35px; /* Mobile par chota size */
+          height: 35px;
+          border-top: 4px solid #dc3545;
+          border-left: 4px solid #dc3545;
         }
 
-        /* Expanded Bottom-Right Corner Angle (Positioned past the buttons) */
+        /* Bottom-Right Corner Angle */
         .content-master-frame::after {
           content: '';
           position: absolute;
           bottom: 0;
           right: 0;
-          width: 60px;  /* Increased length */
-          height: 60px; /* Increased length */
-          border-bottom: 5px solid #dc3545; /* Thicker border */
-          border-right: 5px solid #dc3545;
+          width: 35px; /* Mobile par chota size */
+          height: 35px;
+          border-bottom: 4px solid #dc3545;
+          border-right: 4px solid #dc3545;
         }
 
-        /* Custom Hover States for the Dual Buttons */
+        /* Desktop sizes for geometric frames */
+        @media (min-width: 768px) {
+          .content-master-frame::before,
+          .content-master-frame::after {
+            width: 60px;
+            height: 60px;
+            border-width: 5px;
+          }
+        }
+
+        /* Custom Hover States */
         .btn-custom-primary:hover {
           background-color: #dc3545 !important;
           color: #000000 !important;
@@ -95,13 +109,22 @@ const CarCarousel = () => {
           color: #000000 !important;
           border-color: #ffffff !important;
         }
+
+        /* Responsive Typography */
+        .responsive-heading {
+          font-size: calc(1.5rem + 2vw); /* Screen size ke mutabiq adjust hoga */
+        }
+        @media (min-width: 1200px) {
+          .responsive-heading {
+            font-size: 3.5rem; /* display-4 default desktop size */
+          }
+        }
       `}</style>
 
       <Carousel fade interval={5000} indicators={true} controls={false} className="bg-black">
         {slides.map((slide) => (
-          <Carousel.Item key={slide.id} style={{ height: '66vh', minHeight: '450px' }}>
+          <Carousel.Item key={slide.id} style={{ height: '66vh', minHeight: '460px' }}>
             
-            {/* Premium Black Gradient Overlay */}
             <div
               style={{
                 position: 'absolute',
@@ -123,26 +146,24 @@ const CarCarousel = () => {
 
             <Carousel.Caption 
               className="d-flex flex-column align-items-center justify-content-center"
-              style={{ zIndex: 2, bottom: '15%', left: '10%', right: '10%' }}
+              style={{ zIndex: 2, bottom: '12%', left: '5%', right: '5%' }}
             >
               
-              {/* Master Container: Encloses title, text, and buttons within the large angles */}
               <div className="content-master-frame">
                 
-                {/* Heading */}
-                <h1 className="fw-black text-uppercase display-4 mb-3 tracking-wider text-white">
+                {/* Responsive Heading */}
+                <h1 className="fw-black text-uppercase responsive-heading mb-2 mb-md-3 tracking-wider text-white">
                   <span style={{ color: '#dc3545' }}>{slide.accentTitle} </span>
                   {slide.mainTitle}
                 </h1>
                 
-                {/* Subtitle */}
-                <p className="fs-5 mb-4 text-light opacity-90 text-center fw-light" style={{ maxWidth: '600px' }}>
+                {/* Responsive Subtitle */}
+                <p className="fs-6 fs-md-5 mb-3 mb-md-4 text-light opacity-90 text-center fw-light" style={{ maxWidth: '100%' }}>
                   {slide.subtitle}
                 </p>
                 
-                {/* Dual Medium Button Layout (Now positioned inside the bottom frame line) */}
-                <div className="d-flex gap-3 justify-content-center w-100 px-3">
-                  {/* Primary Button */}
+                {/* Responsive Button Layout: Mobile par vertical, sm screen se horizontal stack */}
+                <div className="d-flex flex-column flex-sm-row gap-2 gap-sm-3 justify-content-center w-100 px-1">
                   <Button 
                     variant="outline-danger" 
                     className="btn-custom-primary fw-bold px-4 py-2 rounded-0 text-uppercase border-2"
@@ -150,27 +171,26 @@ const CarCarousel = () => {
                       color: '#dc3545', 
                       letterSpacing: '1px',
                       backgroundColor: 'rgba(0,0,0,0.6)',
-                      minWidth: '160px'
+                      minWidth: '140px'
                     }}
                   >
                     {slide.ctaPrimary}
                   </Button>
 
-                  {/* Secondary Button */}
                   <Button 
                     variant="outline-light" 
                     className="btn-custom-secondary fw-bold px-4 py-2 rounded-0 text-uppercase border-2"
                     style={{ 
                       letterSpacing: '1px',
                       backgroundColor: 'rgba(0,0,0,0.4)',
-                      minWidth: '160px'
+                      minWidth: '140px'
                     }}
                   >
                     {slide.ctaSecondary}
                   </Button>
                 </div>
 
-              </div> {/* End of content-master-frame */}
+              </div>
 
             </Carousel.Caption>
           </Carousel.Item>
