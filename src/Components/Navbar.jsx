@@ -28,7 +28,7 @@ const styles = {
   mainNav: {
     background: "#0A0A0A",
     borderBottom: "1px solid rgba(200,16,46,0.35)",
-    padding: "0", 
+    padding: "10px", 
     minHeight: "50px", 
     display: "flex",
     alignItems: "center",

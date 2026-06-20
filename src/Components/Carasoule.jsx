@@ -6,7 +6,7 @@ const CarCarousel = () => {
   const slides = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1920&q=80",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeMJhl6DTY10PZXMRRN4JNaqTkRp10yf52wIbsO54fQ0wanvck0XhDpNil&s=10",
       accentTitle: "Hyper",
       mainTitle: "Cars",
       subtitle: "Unleash raw power with a recalibrated V8 twin-turbo.",
@@ -24,7 +24,7 @@ const CarCarousel = () => {
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1920&q=80",
+      image: "https://wallpapercave.com/wp/wp14723321.png",
       accentTitle: "Redline",
       mainTitle: "Racing",
       subtitle: "Born on the track. Legalized for the streets.",
