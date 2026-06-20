@@ -381,7 +381,7 @@ export default function CarNavbar() {
                       }}>
                         {user.user?.Image ? (
                           <img
-                            src={`http://localhost:3000/${user.user.Image}`}
+                            src={`${url}/${user.user.Image}`}
                             alt="Profile"
                             style={{ width: "40px", height: "40px", objectFit: "cover" }}
                           />

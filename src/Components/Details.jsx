@@ -283,7 +283,7 @@ export default function CarDetails() {
                             <div style={styles.imageContainer}>
                                 {car.Image ? (
                                     <img
-                                        src={`http://localhost:3000/${car.Image.replace(/\\/g, '/')}`}
+                                        src={`${url}/${car.Image.replace(/\\/g, '/')}`}
                                         alt={car.Name || "Showcase Vehicle"}
                                         style={styles.heroPreview}
                                     />

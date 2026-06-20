@@ -334,6 +334,7 @@ export default function Home() {
 
     const navigate = useNavigate();
     const Post = useContext(PostContext);
+    const url = import.meta.env.VITE_API_URL;
     
 
     return (
@@ -357,7 +358,7 @@ export default function Home() {
                                     {/* Image Wrapper using responsive aspect-ratio technique */}
                                     <div style={{ width: "100%", aspectRatio: "16 / 10", overflow: "hidden", background: "#1A1A1A" }}>
                                         <img
-                                            src={`http://localhost:3000/${car.Image}`}
+                                            src={`${url}/${car.Image}`}
                                             alt={car.Name || "Car Showcase"}
                                             className="veloce-card-img"
                                             style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease" }}

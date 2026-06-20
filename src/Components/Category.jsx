@@ -165,7 +165,7 @@ export default function CategoryPage() {
                                         <div style={styles.cardImageWrapper} className="responsive-img-wrapper">
                                             <Card.Img
                                                 variant="top"
-                                                src={post.Image ? `http://localhost:3000/${post.Image.replace(/\\/g, '/')}` : "https://via.placeholder.com/600x400?text=Veloce+Automobiles"}
+                                                src={post.Image ? `${url}/${post.Image.replace(/\\/g, '/')}` : "https://via.placeholder.com/600x400?text=Veloce+Automobiles"}
                                                 style={{ height: "100%", width: "100%", objectFit: "cover", borderBottom: "1px solid rgba(200,16,46,0.15)" }}
                                                 alt={post.Name || "Vehicle"}
                                             />

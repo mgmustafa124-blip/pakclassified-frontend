@@ -288,7 +288,7 @@ export default function VeloceProfile() {
                 <div style={styles.avatarWrapper}>
                   {user?.Image ? (
                     <img
-                      src={`http://localhost:3000/${user.Image}`}
+                      src={`${url}/${user.Image}`}
                       alt="Profile"
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
@@ -348,7 +348,7 @@ export default function VeloceProfile() {
                                 {/* Fixed CSS layout wrapper for images on mobile */}
                                 <Col md={5} className="veloce-post-img-wrapper" style={{ position: 'relative' }}>
                                   <Card.Img
-                                    src={`http://localhost:3000/${post.Image}`}
+                                    src={`${url}/${post.Image}`}
                                     className="veloce-post-img"
                                     style={{ width: "100%", height: "100%", objectFit: "cover", }}
                                   />
